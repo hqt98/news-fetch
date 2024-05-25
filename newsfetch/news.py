@@ -41,8 +41,10 @@ class Newspaper:
         print("Extracting NLP")
         catch("None", lambda: article.nlp())
 
+        print("Extracting soup")
         soup = catch("None", lambda: BeautifulSoup(get(self.uri).text, "lxml"))
 
+        print("Combine results")
         if all([newsplease, article, soup]) == None:
             raise ValueError("Sorry, the page you are looking for doesn't exist'")
 
