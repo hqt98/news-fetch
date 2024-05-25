@@ -1,6 +1,6 @@
 from newsfetch.helpers import (author, catch, category, date, news_article,
                                publisher, unicode)
-from newsfetch.utils import Article, BeautifulSoup, NewsPlease, get, unquote
+from newsfetch.utils import FETCH_TIMEOUT, Article, BeautifulSoup, NewsPlease, get, unquote
 
 
 class newspaper:
@@ -15,10 +15,10 @@ class newspaper:
 
         # NewsPlease Scraper
         newsplease = catch(
-            'None', lambda: NewsPlease.from_url(self.uri, timeout=6))
+            'None', lambda: NewsPlease.from_url(self.uri, timeout=FETCH_TIMEOUT))
 
         # Newspaper3K Scraper
-        article = catch('None', lambda: Article(self.uri, timeout=6))
+        article = catch('None', lambda: Article(self.uri, timeout=FETCH_TIMEOUT))
         catch('None', lambda: article.download())
         catch('None', lambda: article.parse())
         catch('None', lambda: article.nlp())
