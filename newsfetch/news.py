@@ -42,7 +42,7 @@ class Newspaper:
         catch("None", lambda: article.nlp())
 
         print("Extracting soup")
-        soup = catch("None", lambda: BeautifulSoup(get(self.uri).text, "lxml"))
+        soup = catch("None", lambda: BeautifulSoup(get(self.uri, timeout=FETCH_TIMEOUT).text, "lxml"))
 
         print("Combine results")
         if all([newsplease, article, soup]) == None:
